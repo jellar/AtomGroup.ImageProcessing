@@ -12,7 +12,7 @@ namespace ImageProcessing.Core
             return ResizeWithResolution(image, options.Width, options.Height, options.Horizontal , options.Vertical);
         }
         
-        private static Image ResizeWithResolution(this Image image, int width, int height, int horizontal, int vertical)
+        private static Image ResizeWithResolution(Image image, int width, int height, int horizontal, int vertical)
         {
             Bitmap bitmap = new Bitmap(width, height);
             Graphics graphics = Graphics.FromImage(bitmap);
