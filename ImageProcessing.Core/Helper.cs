@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
@@ -6,7 +7,7 @@ namespace ImageProcessing.Core
 {
     public static class Helper
     {
-        public static byte[] Save(this Image image, ImageFormat format) 
+        public static byte[] SaveAs(this Image image, ImageFormat format) 
         {
             using (var outStream = new MemoryStream())
             {
@@ -14,10 +15,21 @@ namespace ImageProcessing.Core
                 image.Save(outStream, format);
                 return outStream.ToArray();
             }
-            
         }
         
-        private static ImageCodecInfo GetEncoder(ImageFormat format)
+        public static byte[] ImageToByteArray(Image image, string path)
+        {
+            using (var ms = new MemoryStream())
+            {
+
+                var extension = "." + path.Split('.')[path.Split('.').Length - 1];
+                var myImageCodecInfo = GetEncoderInfo(extension);
+                image.Save(ms,myImageCodecInfo, null); 
+                return  ms.ToArray();
+            }
+        }
+        
+        public static ImageCodecInfo GetEncoder(ImageFormat format)
         {
             var codecs = ImageCodecInfo.GetImageDecoders();
             foreach (var codec in codecs)
@@ -29,6 +41,23 @@ namespace ImageProcessing.Core
             }
 
             return null;
+        }
+        
+        public static ImageCodecInfo GetEncoderInfo(string ext)
+        {
+            int j;
+
+            ImageCodecInfo[] encoders;
+
+            encoders = ImageCodecInfo.GetImageEncoders();
+
+            for (j = 0; j < encoders.Length; ++j)
+            {
+                if (encoders[j].FilenameExtension.ToLower().Contains(ext.ToLower()))
+                    return encoders[j];
+            }
+
+            throw new Exception("Encoder not found");
         }
     }
 }
