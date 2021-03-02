@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 
 namespace ImageProcessing.Core
 {
@@ -58,6 +59,34 @@ namespace ImageProcessing.Core
             }
 
             throw new Exception("Encoder not found");
+        }
+
+        public static Color GetColorFromName(string name)
+        {
+            var color = Color.FromName(name);
+            return !color.IsKnownColor ? Color.LightGray : color;
+        }
+
+        public static bool VerifyImageFileExtension(string fileExtension)
+        {
+            string[] fileTypes = {".jpg", ".jpeg", ".png", ".gif"};
+            return fileTypes.Any(t => fileExtension == t);
+        }
+
+        public static string GetFileContentType(string fileExtension)
+        {
+            switch (fileExtension)
+            {
+                case ".jpg":
+                case ".jpeg":
+                    return "image/jpg";
+                case ".png":
+                    return "image/png";
+                case ".gif":
+                    return "image/gif";
+                default: 
+                    return "image/png";
+            }
         }
     }
 }

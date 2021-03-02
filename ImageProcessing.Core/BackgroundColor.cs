@@ -5,8 +5,9 @@ namespace ImageProcessing.Core
 {
     public static class BackgroundColor
     {
-        public static Image SetBackgroundColor(this Image image, Color color)
+        public static Image SetBackgroundColor(this Image image, string colorName)
         {
+            Color color = Helper.GetColorFromName(colorName);
             return WithBackgroundColor(image, color);
         }
         
