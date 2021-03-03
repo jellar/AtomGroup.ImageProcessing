@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using ImageProcessing.Api.ViewModels;
 using ImageProcessing.Core;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
