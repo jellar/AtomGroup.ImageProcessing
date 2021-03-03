@@ -17,8 +17,7 @@ namespace ImageProcessing.Core
             
             Font font = new Font("Arial", 16, FontStyle.Bold, GraphicsUnit.Pixel);
             Color color = Color.FromArgb(100, 0, 0, 0);
-            double tangent = (double)image.Height / (double)image.Width;
-
+            
             for (var i = 50; i > 0; i--)
             {
                 font = new Font("Arial", i, FontStyle.Bold);

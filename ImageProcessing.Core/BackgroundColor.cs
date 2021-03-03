@@ -36,10 +36,8 @@ namespace ImageProcessing.Core
             Rectangle rect = new Rectangle(0, 0, image.Width, image.Height);
 
             Bitmap bitmap = new Bitmap(image.Width, image.Height);
-            using (Graphics graphics1 = Graphics.FromImage(bitmap))
-            {
-                graphics1.DrawImage(image, points, rect, GraphicsUnit.Pixel, imAttribute);
-            }
+            using Graphics graphics1 = Graphics.FromImage(bitmap);
+            graphics1.DrawImage(image, points, rect, GraphicsUnit.Pixel, imAttribute);
 
             return bitmap;
         }

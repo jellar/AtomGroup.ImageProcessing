@@ -8,16 +8,6 @@ namespace ImageProcessing.Core
 {
     public static class Helper
     {
-        public static byte[] SaveAs(this Image image, ImageFormat format) 
-        {
-            using (var outStream = new MemoryStream())
-            {
-                var encoder = GetEncoder(image.RawFormat);
-                image.Save(outStream, format);
-                return outStream.ToArray();
-            }
-        }
-        
         public static byte[] ImageToByteArray(Image image, string path)
         {
             using (var ms = new MemoryStream())
@@ -29,21 +19,7 @@ namespace ImageProcessing.Core
                 return  ms.ToArray();
             }
         }
-        
-        public static ImageCodecInfo GetEncoder(ImageFormat format)
-        {
-            var codecs = ImageCodecInfo.GetImageDecoders();
-            foreach (var codec in codecs)
-            {
-                if (codec.FormatID == format.Guid)
-                {
-                    return codec;
-                }
-            }
 
-            return null;
-        }
-        
         public static ImageCodecInfo GetEncoderInfo(string ext)
         {
             int j;

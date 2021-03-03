@@ -32,10 +32,10 @@ namespace ImageProcessing.Core
     
     public class ImageResolutionOptions
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public int Horizontal { get; set; }
-        public int Vertical { get; set; }
+        public int Width { get; }
+        public int Height { get; }
+        public int Horizontal { get; }
+        public int Vertical { get; }
 
         public ImageResolutionOptions(Image image, int width, int horizontal, int vertical)
         {

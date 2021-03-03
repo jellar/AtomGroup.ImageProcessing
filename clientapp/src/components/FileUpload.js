@@ -50,7 +50,8 @@ const FileUpload = () => {
         setProgress(0);
         setCurrentFile(currentFile);
         
-        uploadService(currentFile, formValues.width, formValues.backGroundColor, formValues.watermarkText, (event) => {
+        uploadService(currentFile, formValues.width, formValues.backGroundColor, 
+            formValues.watermarkText, (event) => {
             console.log(formValues);
             setProgress(Math.round((100 * event.loaded) / event.total));
         })
@@ -90,7 +91,7 @@ const FileUpload = () => {
                 </div>    
                 <div className="col-4">
                     <label className="form-label">Width *</label>
-                    <input type="text" className="form-control" id="inputwidth" required value={formValues.width}
+                    <input type="text" className="form-control" id="inputWidth" required value={formValues.width}
                     onChange={handleWidthInputChange}/>
                 </div>  
                 <div className="col-4">
@@ -111,10 +112,7 @@ const FileUpload = () => {
                 >
                     Upload
                 </button></div>
-            </form>
-            
-
-            
+            </form>    
 
             <div className="alert alert-light" role="alert">
                 {message}
@@ -136,7 +134,9 @@ const FileUpload = () => {
         </div>
     );
 }
+
+export default FileUpload;
+
 const OrinalImage = ({ image }) => {
     return <img src={URL.createObjectURL(image)} alt={image.name} />;
 };
-export default FileUpload;
